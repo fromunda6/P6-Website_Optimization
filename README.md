@@ -13,7 +13,11 @@
 	c. Project images are taken from external links accessed at each REFLOW/layout event additional to the initial
 		i. Download, save and reference images locally. Then optimize (compress,etc)
 		ii. impact:
-	d. Minify and compress source code
+	d. Minify and compress source code 
+		i. This will be done last thing, using Grunt
+
+##Once you've completed the actual optimizations, some user-centric informing is in order - namely that THIS readme
+includes instructions for setting up a simply server via python and ngrok, such that Google PageSpeed is able to access that site...
 
 ## Website Performance Optimization portfolio project. 
 
