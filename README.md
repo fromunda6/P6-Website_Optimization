@@ -2,6 +2,19 @@
 ##Front-End Web Developer Nanodegree(2016)
 ##P6 - Website Optimization
 
+##My changes (prior to use of PageSpeed insights)
+
+	a. Google Analytics script does not need to be parser-blocking as it does not affect the view of the page
+		i. Solution: add "async" property to associated script tag
+		ii. impact of change: reduces load time ~21ms
+	b. print.css is currently render-blocking unconditionally, is only required is printing
+		i. Solution: add "media:print" attribute-value to associated css link tag
+		ii. impact: before/after
+	c. Project images are taken from external links accessed at each REFLOW/layout event additional to the initial
+		i. Download, save and reference images locally. Then optimize (compress,etc)
+		ii. impact:
+	d. Minify and compress source code
+
 ## Website Performance Optimization portfolio project. 
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
