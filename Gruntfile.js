@@ -5,10 +5,13 @@ module.exports = function(grunt) {
 
   uglify: {
   	build: {
-  		src: 'js/perfmatters.js',
-  		dest: 'js/perfmatters.min.js'
+  		files: [
+  			{src: ['js/perfmatters.js'], dest: 'js/perfmatters.min.js'},
+  			{src: ['views/js/main.js'], dest: 'views/js/main.min.js'}
+  		],
   	}
   }
+}
 });
 
   grunt.loadNpmTasks('grunt-contrib-uglify'); //alerting Grunt of intention to use this
