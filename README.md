@@ -9,7 +9,7 @@
 	b. Allow "tunneling", or external access to locally hosted resources 
 		i. via browser, navigate to ngrok.com
 		ii. download copy of executable and save it to "shallowest" level of project directory
-		iii. (from 2nd instance of terminal - your first is playing a good host, remember) >> ngrok hhtp 8080
+		iii. (from 2nd instance of terminal - your first is playing a good host, remember) >> ngrok http 8080
 		iv. direct Google PageSpeed to the address provided by ngrok in the terminal under heading "Forwarding",
 			adding your webpage suffix to the end of that address
 
