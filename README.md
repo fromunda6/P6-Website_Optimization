@@ -2,7 +2,7 @@
 ##Front-End Web Developer Nanodegree(2016)
 ##P6 - Website Optimization
 
-##How to VIEW these pages(OS=Windows):
+##How to test these pages with Google PageSpeed(OS=Windows):
 	a. Initiate local hosting(from terminal):
 		i. >> cd "mylocalpath"
 		ii. Assuming Python 3 is installed, >> python -m http.server 8080
@@ -24,7 +24,7 @@
 	
 ##Discovered Via PageSpeed Insights:
 
-	A. INDEX.html
+	A. INDEX.html - Speed optimizations
 	Fixes performed:
 		a). Optimize images - 
 			simple compression and resize of images used in index.html and pizza.html performed online using 
@@ -46,7 +46,15 @@
 			ii. within index.min.html, changed links to minified JS, pasted minified CSS			
 		g). added grunt_module directory to .gitignore to make GitHub happier
 
-	B. Pizza.html
+	B. Pizza.html - Getting rid of Jank
+		
+		II. While still under the impression that I was required to run Pizza.html through PageSpeed insights, I performed the following:
+		a). Optimize Images - 
+			compression and resizing of pizzeria.jpg achieved significant speed improvements
+			compression of all other images 
+		b). Configured viewport
+		c). Inlined style.css 
+		
 
 ## Website Performance Optimization portfolio project. 
 
