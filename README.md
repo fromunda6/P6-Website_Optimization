@@ -2,22 +2,51 @@
 ##Front-End Web Developer Nanodegree(2016)
 ##P6 - Website Optimization
 
+##How to VIEW these pages(OS=Windows):
+	a. Initiate local hosting(from terminal):
+		i. >> cd "mylocalpath"
+		ii. Assuming Python 3 is installed, >> python -m http.server 8080
+	b. Allow "tunneling", or external access to locally hosted resources 
+		i. via browser, navigate to ngrok.com
+		ii. download copy of executable and save it to "shallowest" level of project directory
+		iii. (from 2nd instance of terminal - your first is playing a good host, remember) >> ngrok hhtp 8080
+		iv. direct Google PageSpeed to the address provided by ngrok in the terminal under heading "Forwarding",
+			adding your webpage suffix to the end of that address
+
 ##My changes (prior to use of PageSpeed insights)
 
 	a. Google Analytics script does not need to be parser-blocking as it does not affect the view of the page
 		i. Solution: add "async" property to associated script tag
 		ii. impact of change: reduces load time ~21ms
-	b. print.css is currently render-blocking unconditionally, is only required is printing
+	b. print.css is currently render-blocking unconditionally, is only required when printing
 		i. Solution: add "media:print" attribute-value to associated css link tag
 		ii. impact: before/after
-	c. Project images are taken from external links accessed at each REFLOW/layout event additional to the initial
-		i. Download, save and reference images locally. Then optimize (compress,etc)
-		ii. impact:
-	d. Minify and compress source code 
-		i. This will be done last thing, using Grunt
+	
+##Discovered Via PageSpeed Insights:
 
-##Once you've completed the actual optimizations, some user-centric informing is in order - namely that THIS readme
-includes instructions for setting up a simply server via python and ngrok, such that Google PageSpeed is able to access that site...
+	A. INDEX.html
+	Fixes performed:
+		a). Optimize images - 
+			simple compression and resize of images used in index.html and pizza.html performed online using 
+			tinypng and resize-photos, respectively; removed image metadata per dev.google recommendations
+		b). Eliminate render-blocking JS and CSS (above the 'fold') -
+			a). determine area "above-the-fold": pretty much all of it
+			b). CSS was inlined in order to achieve PageSpeed target, not the desired solution		
+		c). leverage browser caching
+			a). As I understand nothing about my server other than its port number, I am not sure I will be 
+			able to leverage server-directed caching (cache-control directives, ETags) of resources by the browser 
+		d). reduce server time response - same issue as above
+		e). enabling GZIP compression on my server - I don't know how to do this
+		f). Minified JS, HTML, and CSS
+			i. brutal learning session with grunt, etc
+				a). Clean install of node.js	
+				b). global install of Grunt CLI
+				c). Local install and execution of Grunt dependencies and packages, rspctvly
+					i. uglify, cssmin and htmlmin,
+			ii. within index.min.html, changed links to minified JS, pasted minified CSS			
+		g). added grunt_module directory to .gitignore to make GitHub happier
+
+	B. Pizza.html
 
 ## Website Performance Optimization portfolio project. 
 
@@ -40,12 +69,12 @@ To get started, check out the repository and inspect the code.
 
 	```bash
   $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
+  $> python -m http.server 8080
   
 	```
 
 1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to the top-level of your project directory to make your local server accessible remotely.
+. Download and install [ngrok](https://ngrok.com/) to the top-level of your project directory to make your local server accessible remotely.
 
   
 	``` bash
