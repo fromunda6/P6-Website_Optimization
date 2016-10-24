@@ -54,6 +54,7 @@
 			c). Optimization of UpdatePositions was done with much help from Udacity forums member mcs
 				i). moved variables being calculated at each iteration out of for loop 
 				ii). moved calculation of variable phase out of forLoop and into array
+				iii). moved DOM retrieval out of loop @ 490
 			d). PizzaScroller
 				i). formerly an indirect calculation based on size differences, I here utilized Cameron's static sizing function changePizzaSizes
 
@@ -62,8 +63,9 @@
 				compression and resizing of pizzeria.jpg achieved significant speed improvements
 				compression of all other images 
 			b). Configured viewport
-			c). minified html, css and JS using Grunt 
-			c). Inlined style.min.css and updated link to main.min.js
+			c). changed instances of selector 'document.querySelector' to 'document.getElement...' as it's more specific
+			d). minified html, css and JS using Grunt 
+			e). Inlined style.min.css and updated link to main.min.js
 		
 
 ## Website Performance Optimization portfolio project. 

@@ -406,13 +406,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";  //changed method 'querySelector' to 'getElementById' for this and following 2 cases
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -449,7 +449,7 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
 
-  var randomPizzas = document.querySelectorAll(".randomPizzaContainer"); //PER Don't Repeat Yourself, no need to go to the DOM 4 times each iteration of this loop
+  var randomPizzas = document.getElementsByClassName("randomPizzaContainer"); //PER Don't Repeat Yourself, no need to go to the DOM 4 times each iteration of this loop; also, changed 'querySelectorAll' to 'getElementsByClass'
 
   function changePizzaSizes(size) {
     switch(size) {
@@ -467,7 +467,9 @@ var resizePizzas = function(size) {
 
     }
 
-    for (var i = 0; i < randomPizzas.length; i++) {
+    var randomPizzasLength = randomPizzas.length; //added local var definition here in order to circumvent the retrieval of array length for each iteration
+
+    for (var i = 0; i < randomPizzasLength; i++) {
       randomPizzas[i].style.width = newwidth + '%';
     }
   }
@@ -484,8 +486,10 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+
+var pizzasDiv = document.getElementById("randomPizzas"); //refactored loop to end needless repetition of element retrieval
+
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -554,9 +558,11 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 4; //reduced divisor of element property 'basicLeft' to
+  var cols = 8;
   var s = 256;
-  for (var i = 0; i < 20; i++) {  //Animating 20 pizzas is more than enough considering 'viewable' area
+  var movingPizzasDOM = document.getElementById('movingPizzas1') //changed 'querySelector' to 'getElementById, and moved the DOM call outside the loop'
+
+  for (var i = 0, elem; i < 24; i++) {  //Animating 24 pizzas is more than enough considering 'viewable' area;; Also, declared var elem in loop's initialization in order to eliminate unnecessary recreation at each iteration
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -564,7 +570,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPizzasDOM.appendChild(elem);
   }
   updatePositions();
 });
