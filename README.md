@@ -27,13 +27,13 @@
 	A. INDEX.html - Speed optimizations
 	Fixes performed:
 		a). Optimize images - 
-			simple compression and resize of images used in index.html and pizza.html performed online using 
-			tinypng and resize-photos, respectively; removed image metadata per dev.google recommendations
+			i). simple compression and resize of images used in index.html and pizza.html performed online using 
+			ii). tinypng and resize-photos, respectively; removed image metadata per dev.google recommendations
 		b). Eliminate render-blocking JS and CSS (above the 'fold') -
-			a). determine area "above-the-fold": pretty much all of it
-			b). CSS was inlined in order to achieve PageSpeed target, not the desired solution		
+			i). determine area "above-the-fold": pretty much all of it
+			ii). CSS was inlined in order to achieve PageSpeed target, not the desired solution		
 		c). leverage browser caching
-			a). As I understand nothing about my server other than its port number, I am not sure I will be 
+			i). As I understand nothing about my server other than its port number, I am not sure I will be 
 			able to leverage server-directed caching (cache-control directives, ETags) of resources by the browser 
 		d). reduce server time response - same issue as above
 		e). enabling GZIP compression on my server - I don't know how to do this
@@ -47,13 +47,23 @@
 		g). added grunt_module directory to .gitignore to make GitHub happier
 
 	B. Pizza.html - Getting rid of Jank
-		
-		II. While still under the impression that I was required to run Pizza.html through PageSpeed insights, I performed the following:
-		a). Optimize Images - 
-			compression and resizing of pizzeria.jpg achieved significant speed improvements
-			compression of all other images 
-		b). Configured viewport
-		c). Inlined style.css 
+
+		I. Optimizing JS to reduce animation times 
+			a). Drastically reduced the number of pizzas being generated as a user has in view at any given moment only 20 or so background pizzas, not the 200 being animated by the onload event listener (main.js 
+			b). Function that selects elements to be subject to animation per Math.sin is scanning entire DOM for elements named .mover - changed this to getElementsByClassName(mover);
+			c). Optimization of UpdatePositions was done with much help from Udacity forums member mcs
+				i). moved variables being calculated at each iteration out of for loop 
+				ii). moved calculation of variable phase out of forLoop and into array
+			d). PizzaScroller
+				i). formerly an indirect calculation based on size differences, I here utilized Cameron's static sizing function changePizzaSizes
+
+		II. General speed-oriented optimizations:
+			a). Optimize Images - 
+				compression and resizing of pizzeria.jpg achieved significant speed improvements
+				compression of all other images 
+			b). Configured viewport
+			c). minified html, css and JS using Grunt 
+			c). Inlined style.min.css and updated link to main.min.js
 		
 
 ## Website Performance Optimization portfolio project. 
